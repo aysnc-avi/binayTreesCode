@@ -35,8 +35,38 @@ struct Node* buildTree() {
 
     return root;
 }
+void preOrderTraversal(struct Node *root){
+    if(root == NULL){
+        return;
+    } 
+    printf("%d ", root->data);
+    preOrderTraversal(root->left);
+    preOrderTraversal(root->right);
+}
+
+void postOrderTraversal(struct Node *root){
+    if(root == NULL){
+        return;
+    } 
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    printf("%d ", root->data);
+}
+void InOrderTraversal(struct Node *root){
+    if(root == NULL){
+        return;
+    } 
+    InOrderTraversal(root->left);
+    printf("%d ", root->data);
+    InOrderTraversal(root->right);
+}
+
+
+
 int main(){
     struct Node* result = buildTree();
+    printf("Preorder traversal: \n");
+    preOrderTraversal(result);
     return 0;
 }
 
