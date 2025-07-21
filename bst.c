@@ -29,6 +29,19 @@ struct Node *insertionInBinaryTree(int value, struct Node* root){
     return root;
 }
 
+struct Node *searchInBinaryTree(int value, struct Node* root){
+    if(root == NULL){
+        return NULL;
+    }
+    if(root->data == value){
+        return root;
+    }
+    if(root->data > value){
+        return searchInBinaryTree(value, root->left);
+    }else{
+        return searchInBinaryTree(value, root->right);
+    }
+}
 int main(){
     struct Node *root = NULL;
     root = insertionInBinaryTree(30, root);
@@ -36,5 +49,7 @@ int main(){
     insertionInBinaryTree(45, root);
     insertionInBinaryTree(2, root);
     insertionInBinaryTree(6, root);
+    struct Node *search = searchInBinaryTree(45, root);
+    printf("%d", search->data);
     return 0;
 }
