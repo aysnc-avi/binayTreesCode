@@ -29,6 +29,34 @@ struct Node *insertionInBinaryTree(int value, struct Node* root){
     return root;
 }
 
+struct Node *inOrderPredecessor(struct Node* root){
+    root = root->left;
+    while(root->right != NULL){
+        root = root->right;
+    }
+    return root;
+}
+
+struct Node *deletionInBinaryTree(struct Node* root, int value){
+
+    if(root == NULL) return;
+    if(root->left == NULL && root->right == NULL){
+        free(root);
+        return NULL;
+    }
+
+    if(root->data > value){
+        root->left = deletionInBinaryTree(root->left, value);
+    }else if(root->data < value){
+        root->right = deletionInBinaryTree(root->right, value);
+    } else {
+        struct Node *iPre = inOrderPredecessor(root);
+        root->data = iPre->data;
+        root->left = deletionInBinaryTree(root->left, iPre->data);
+    }
+    return root;
+}
+
 struct Node *searchInBinaryTree(int value, struct Node* root){
     if(root == NULL){
         return NULL;
