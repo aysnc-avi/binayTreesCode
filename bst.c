@@ -29,6 +29,8 @@ struct Node *insertionInBinaryTree(int value, struct Node* root){
     return root;
 }
 
+// In order predecessor for deletion in binary
+
 struct Node *inOrderPredecessor(struct Node* root){
     root = root->left;
     while(root->right != NULL){
@@ -36,6 +38,7 @@ struct Node *inOrderPredecessor(struct Node* root){
     }
     return root;
 }
+// Deletion in Binary 
 
 struct Node *deletionInBinaryTree(struct Node* root, int value){
 
